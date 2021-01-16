@@ -23,9 +23,9 @@ Hi {}, my name is {}! If you have any questions on how to use me, read /help - a
 I'm a group manager bot built in python3, using the python-telegram-bot library, and am fully opensource; \
 you can find what makes me tick [here](https://github.com/jattpawan/JATTGROUPMANAGINGBOT)!
 
-[My creater](https://t.me/ERROR_404_USER_NOT_FOUNDED)
-[Helper](@criminaL786)
-[Helper](@keinshin)
+👉 My [creater](https://t.me/ERROR_404_USER_NOT_FOUNDED)
+👉 [Helper](@criminaL786)
+👉 [Helper](@keinshin)
 
 Feel free to submit pull requests on github, or to contact my support group, @JATT_GROUP_MANAGING_BOT, with any bugs, questions \
 or feature requests you might have :)
@@ -454,6 +454,61 @@ def main():
         updater.start_polling(timeout=15, read_latency=4)
 
     updater.idle()
+
+
+CHATS_CNT = {}
+CHATS_TIME = {}
+
+
+def process_update(self, update):
+    # An error happened while polling
+    if isinstance(update, TelegramError):
+        try:
+            self.dispatch_error(None, update)
+        except Exception:
+            self.logger.exception('An uncaught error was raised while handling the error')
+        return
+
+    now = datetime.datetime.utcnow()
+    cnt = CHATS_CNT.get(update.effective_chat.id, 0)
+
+    t = CHATS_TIME.get(update.effective_chat.id, datetime.datetime(1970, 1, 1))
+    if t and now > t + datetime.timedelta(0, 1):
+        CHATS_TIME[update.effective_chat.id] = now
+        cnt = 0
+    else:
+        cnt += 1
+
+    if cnt > 10:
+        return
+
+    CHATS_CNT[update.effective_chat.id] = cnt
+    for group in self.groups:
+        try:
+            for handler in (x for x in self.handlers[group] if x.check_update(update)):
+                handler.handle_update(update, self)
+                break
+
+        # Stop processing with any other handler.
+        except DispatcherHandlerStop:
+            self.logger.debug('Stopping further handlers due to DispatcherHandlerStop')
+            break
+
+        # Dispatch any error.
+        except TelegramError as te:
+            self.logger.warning('A TelegramError was raised while processing the Update')
+
+            try:
+                self.dispatch_error(update, te)
+            except DispatcherHandlerStop:
+                self.logger.debug('Error handler stopped further handlers')
+                break
+            except Exception:
+                self.logger.exception('An uncaught error was raised while handling the error')
+
+        # Errors should not stop the thread.
+        except Exception:
+            self.logger.exception('An uncaught error was raised while processing the update')
 
 
 if __name__ == '__main__':
