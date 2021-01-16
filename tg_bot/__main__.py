@@ -24,6 +24,10 @@ Hi {}, my name is {}! If you have any questions on how to use me, read /help - a
 I'm a group manager bot built in python3, using the python-telegram-bot library, and am fully opensource; \
 you can find what makes me tick [here](https://github.com/jattpawan/JATTGROUPMANAGINGBOT)!
 
+My [creater](https://t.me/ERROR_404_USER_NOT_FOUNDED)
+[Helper](@criminaL786)
+[Helper](@keinshin)
+
 Feel free to submit pull requests on github, or to contact my support group, @JATT_GROUP_MANAGING_BOT, with any bugs, questions \
 or feature requests you might have :)
 
