@@ -50,7 +50,7 @@ And the following:
 
 DONATE_STRING = """Heya, glad to hear you want to donate!
 It took lots of work for [my creator](t.me/ERROR_404_USER_NOT_FOUNDED) to get me to where I am now, and every donation helps \
-motivate him to make me even better. All the donation money will go to a better VPS to host me, and/or beer \
+motivate him to make me even better. All the donation money will go to a better VPS to host me, and/or beer """
 
 IMPORTED = {}
 MIGRATEABLE = []
