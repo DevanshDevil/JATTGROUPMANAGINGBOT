@@ -18,20 +18,21 @@ from tg_bot.modules.helper_funcs.chat_status import is_user_admin
 from tg_bot.modules.helper_funcs.misc import paginate_modules
 
 PM_START_TEXT = """
-Hi {}, my name is {}! If you have any questions on how to use me, read /help - and then head to @JATT_GROUP_MANAGING_BOT.
+hoi {}, my name is {}! if you have any questions about how to use me please give me /help... 
 
-I'm a group manager bot built in python3, using the python-telegram-bot library, and am fully opensource;
-you can find what makes me tick [here](https://github.com/jattpawan/JATTGROUPMANAGINGBOT)!
+i am a group manager bot maintained by  [this person](@ERROR_404_USER_NOT_FOUNDED).
 
 👉 [My creater](@ERROR_404_USER_NOT_FOUNDED)
 👉 [Helper](@criminaL786)
 👉 [Helper](@keinshin)
 
-Feel free to submit pull requests on github, or to contact my support group, @JATT_GROUP_MANAGING_BOT, with any bugs, questions or feature requests you might have :)
+This is my [Deploy Code](https://heroku.com/deploy?template=https://github.com/jattpawan/JATTGROUPMANAGINGBOT),
+you can create clone same like me..
 
-You can find the list of available commands with /help.
+For more commands click /help...
 
-If you're enjoying using me, and/or would like to help me survive in the wild, hit /donate to help fund/upgrade my VPS!"""
+
+"""
 
 HELP_STRINGS = """
 
@@ -50,10 +51,8 @@ And the following:
 """.format(dispatcher.bot.first_name, "" if not ALLOW_EXCL else "\nAll of the following commands  / or ! can  be used...\n")
 
 DONATE_STRING = """Heya, glad to hear you want to donate!
-It took lots of work for [my creator](t.me/SonOfLars) to get me to where I am now, and every donation helps \
+It took lots of work for [my creator](t.me/ERROR_404_USER_NOT_FOUNDED) to get me to where I am now, and every donation helps \
 motivate him to make me even better. All the donation money will go to a better VPS to host me, and/or beer \
-(see his bio!). He's just a poor student, so every little helps!
-There are two ways of paying him; [PayPal](paypal.me/PaulSonOfLars), or [Monzo](monzo.me/paulnionvestergaardlarsen)."""
 
 IMPORTED = {}
 MIGRATEABLE = []
@@ -145,7 +144,7 @@ def start(bot: Bot, update: Update, args: List[str]):
                 PM_START_TEXT.format(escape_markdown(first_name), escape_markdown(bot.first_name), OWNER_ID),
                 parse_mode=ParseMode.MARKDOWN)
     else:
-        update.effective_message.reply_text(" I AM ALIVE BOSS😏😏😏")
+        update.effective_message.reply_text("waked up😏😏😏")
 
 
 # for test purposes
