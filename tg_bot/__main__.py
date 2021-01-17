@@ -30,8 +30,6 @@ This is my [Deploy Code](https://heroku.com/deploy?template=https://github.com/j
 you can create clone same like me..
 
 For more commands click /help...
-
-
 """
 
 HELP_STRINGS = """
@@ -451,4 +449,5 @@ def main():
 
 if __name__ == '__main__':
     LOGGER.info("Successfully loaded modules: " + str(ALL_MODULES))
+    LOGGER.info("Successfully loaded")
     main()
